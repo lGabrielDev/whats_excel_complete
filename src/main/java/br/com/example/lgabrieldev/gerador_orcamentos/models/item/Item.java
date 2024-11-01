@@ -58,7 +58,7 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public Double getValorTotal(){
+    public Double getValorTotal() {
         return this.valorUnit * this.quantity;
-    }    
+    }   
 }

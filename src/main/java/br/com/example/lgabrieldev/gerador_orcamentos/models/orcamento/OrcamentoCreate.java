@@ -20,7 +20,6 @@ public class OrcamentoCreate {
         this.prazoEntrega = 0;
     }
 
-
     //getters and setters
     public String getCliente() {
         return cliente;
@@ -72,5 +71,5 @@ public class OrcamentoCreate {
         this.sinal = sinal;
     }
 
-    
+
 }

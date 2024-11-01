@@ -38,7 +38,7 @@ public class ItemCreate {
     }
 
     public Double getValorUnit() {
-        return valorUnit;
+        return this.valorUnit;
     }
 
     public void setValorUnit(Double valorUnit) {
@@ -46,10 +46,11 @@ public class ItemCreate {
     }
 
     public Integer getQuantity() {
-        return quantity;
+        return this.quantity;
     }
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }   
+    }
+
 }

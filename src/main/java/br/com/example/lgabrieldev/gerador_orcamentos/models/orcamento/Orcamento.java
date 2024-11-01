@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.example.lgabrieldev.gerador_orcamentos.converter_items.ConverterItems;
 import br.com.example.lgabrieldev.gerador_orcamentos.models.item.Item;
 
@@ -39,8 +38,8 @@ public class Orcamento {
     }
 
     public Orcamento(OrcamentoCreate orcamentoCreate) {
-        this.dataEnvio = LocalDate.now();
         this.items = new ArrayList<>();
+        this.dataEnvio = LocalDate.now();
         this.cliente = orcamentoCreate.getCliente();
         this.descricao = orcamentoCreate.getDescricao();
         this.observacoes = orcamentoCreate.getObservacoes();
@@ -103,6 +102,10 @@ public class Orcamento {
 
     public void setSinal(Double sinal) {
         this.sinal = sinal;
+    }
+
+    public Double getValorTotal(){
+        return this.items.stream().mapToDouble((item) -> item.getValorTotal()).sum();
     }
 
     

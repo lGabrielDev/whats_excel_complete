@@ -1,14 +1,18 @@
 package br.com.example.lgabrieldev.gerador_orcamentos.validacoes.orcamento_validations;
 
-import br.com.example.lgabrieldev.gerador_orcamentos.validacoes.interfaces.AllValidationsAreGoodForString;
+import org.springframework.stereotype.Component;
 
-public class ObservacoesValidations implements AllValidationsAreGoodForString{
+import br.com.example.lgabrieldev.gerador_orcamentos.models.orcamento.OrcamentoCreate;
+import br.com.example.lgabrieldev.gerador_orcamentos.validacoes.interfaces.AllValidationsAreGood;
+
+@Component
+public class ObservacoesValidations implements AllValidationsAreGood{
     
     // ====== 200 characters max ======
-    public Boolean isBetween5And45(String obervacoes){
+    public Boolean isBetween5And200(String obervacoes){
         if(obervacoes != null){
-            if(obervacoes.length() > 200){
-                throw new RuntimeException("obervacoes length cannot be bigger than 200 characters");
+            if(obervacoes.length() < 5 ||obervacoes.length() > 200){
+                throw new RuntimeException(" 'obervacoes' length must be between be 5 and 200 characters");
             }
         }
         return true;
@@ -16,9 +20,9 @@ public class ObservacoesValidations implements AllValidationsAreGoodForString{
 
     // ====== all validations passed ======
     @Override
-    public Boolean allValidationsAreGood(String campo) {
-        
-        this.isBetween5And45(campo);
+    public Boolean allValidationsAreGood(OrcamentoCreate orcamentoCreate) {
+        String observacoes = orcamentoCreate.getObservacoes();
+        this.isBetween5And200(observacoes);
 
         return true;
     }

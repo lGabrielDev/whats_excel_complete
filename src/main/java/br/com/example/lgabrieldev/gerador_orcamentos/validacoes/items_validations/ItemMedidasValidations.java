@@ -10,37 +10,29 @@ import br.com.example.lgabrieldev.gerador_orcamentos.validacoes.interfaces.AllVa
 
 
 @Component
-public class ItemDescricaoValidations implements AllValidationsAreGood {
-
-     // ====== cannot be null ======
-     public Boolean isNotNull(ItemCreate itemCreate, Integer itemId){
-
-        if(itemCreate.getDescricao() == null){
-            throw new RuntimeException(String.format(" 'descricao' cannot be null --> item #%d está errado ", itemId));
-        }
-        return true;
-    }
+public class ItemMedidasValidations implements AllValidationsAreGood {
 
     // ====== between 5 and 80 characters ======
     public Boolean isBetween5And45(ItemCreate itemCreate, Integer itemId){
 
-        if(itemCreate.getDescricao().length() < 5 || itemCreate.getDescricao().length() > 80){
-            throw new RuntimeException(String.format(" 'descricao' length must be between 5 and 80 characters --> item #%d está errado", itemId));
+        if(itemCreate.getMedidas().length() < 5 || itemCreate.getMedidas().length() > 80){
+            throw new RuntimeException(String.format(" 'medidas' length must be between 5 and 80 characters --> item #%d está errado", itemId));
         }
         return true;
     }
 
- 
     // ====== all validations passed ======
     @Override
     public Boolean allValidationsAreGood(OrcamentoCreate orcamentoCreate) {
         List<ItemCreate> items = orcamentoCreate.getItems();
         
         for(Integer i = 0; i < items.size(); i++){
-            this.isNotNull(items.get(i), (i+1));
-            this.isBetween5And45(items.get(i), (i+1));
+            if(items.get(i).getMedidas() != null){
+                this.isBetween5And45(items.get(i), (i+1));
+            }
         }
         return true;
     }
+    
 
 }
