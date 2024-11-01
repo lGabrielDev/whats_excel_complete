@@ -2,6 +2,8 @@ package br.com.example.lgabrieldev.gerador_orcamentos.validacoes.orcamento_valid
 
 import org.springframework.stereotype.Component;
 
+import br.com.example.lgabrieldev.gerador_orcamentos.exceptions.unique_exceptions.FieldCannotBeNullException;
+import br.com.example.lgabrieldev.gerador_orcamentos.exceptions.unique_exceptions.FieldLengthIsWrongException;
 import br.com.example.lgabrieldev.gerador_orcamentos.models.orcamento.OrcamentoCreate;
 import br.com.example.lgabrieldev.gerador_orcamentos.validacoes.interfaces.AllValidationsAreGood;
 
@@ -12,7 +14,7 @@ public class DescricaoValidations implements AllValidationsAreGood {
      public Boolean isNotNull(String descricao){
 
         if(descricao == null){
-            throw new RuntimeException(" 'descricao' cannot be null");
+            throw new FieldCannotBeNullException(" 'descricao' cannot be null");
         }
         return true;
     }
@@ -21,7 +23,7 @@ public class DescricaoValidations implements AllValidationsAreGood {
     public Boolean isBetween5And45(String cliente){
 
         if(cliente.length() < 5 || cliente.length() > 45){
-            throw new RuntimeException(" 'descricao' length must be between 5 and 45 characters");
+            throw new FieldLengthIsWrongException(" 'descricao' length must be between 5 and 45 characters");
         }
         return true;
     }

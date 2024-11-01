@@ -1,9 +1,9 @@
 package br.com.example.lgabrieldev.gerador_orcamentos.validacoes.items_validations;
 
 import java.util.List;
-
 import org.springframework.stereotype.Component;
-
+import br.com.example.lgabrieldev.gerador_orcamentos.exceptions.unique_exceptions.FieldCannotBeNullException;
+import br.com.example.lgabrieldev.gerador_orcamentos.exceptions.unique_exceptions.FieldNumberMustBeBigger;
 import br.com.example.lgabrieldev.gerador_orcamentos.models.item.ItemCreate;
 import br.com.example.lgabrieldev.gerador_orcamentos.models.orcamento.OrcamentoCreate;
 import br.com.example.lgabrieldev.gerador_orcamentos.validacoes.interfaces.AllValidationsAreGood;
@@ -16,7 +16,7 @@ public class ItemValorUnitValidations implements AllValidationsAreGood{
     public Boolean isNotNull(ItemCreate itemCreate, Integer itemId){
 
         if(itemCreate.getValorUnit() == null){
-            throw new RuntimeException(String.format(" 'valorUnit' cannot be null --> item #%d está errado ", itemId));
+            throw new FieldCannotBeNullException(String.format(" 'valorUnit' cannot be null --> item #%d está errado ", itemId));
         }
         return true;
     }
@@ -25,7 +25,7 @@ public class ItemValorUnitValidations implements AllValidationsAreGood{
     public Boolean isAPositiveNumber(ItemCreate itemCreate, Integer itemId){
 
         if(itemCreate.getValorUnit() <= 0){
-            throw new RuntimeException(String.format(" 'valorUnit' must be a bigger than 0 --> item #%d está errado", itemId));
+            throw new FieldNumberMustBeBigger(String.format(" 'valorUnit' must be bigger than 0 --> item #%d está errado", itemId));
         }
         return true;
     }

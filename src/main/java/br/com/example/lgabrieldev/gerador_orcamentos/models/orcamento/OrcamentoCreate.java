@@ -12,12 +12,12 @@ public class OrcamentoCreate {
     private String observacoes;
     private Integer prazoEntrega;
     private Double sinal;
+    private Integer parcelas;
     private List<ItemCreate> items;
 
     //constructors
     public OrcamentoCreate(){
         this.items = new ArrayList<>();
-        this.prazoEntrega = 0;
     }
 
     //getters and setters
@@ -71,5 +71,11 @@ public class OrcamentoCreate {
         this.sinal = sinal;
     }
 
+    public Integer getParcelas() {
+        return parcelas;
+    }
 
+    public void setParcelas(Integer parcelas) {
+        this.parcelas = parcelas;
+    }
 }

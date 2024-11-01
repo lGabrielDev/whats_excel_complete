@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import br.com.example.lgabrieldev.gerador_orcamentos.models.orcamento.Orcamento;
 import br.com.example.lgabrieldev.gerador_orcamentos.models.orcamento.OrcamentoCreate;
 
 
@@ -25,7 +24,7 @@ public class OrcamentoController {
 
     // ================= POST =================
     @PostMapping("")
-    public ResponseEntity<Orcamento> createOrcamento(@RequestBody OrcamentoCreate orcamentoCreate){
+    public ResponseEntity<String> createOrcamento(@RequestBody OrcamentoCreate orcamentoCreate){
         return ResponseEntity
             .status(HttpStatus.CREATED)
             .body(this.orcamentoService.createOrcamento(orcamentoCreate));
